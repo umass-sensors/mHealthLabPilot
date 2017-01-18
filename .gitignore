@@ -49,4 +49,10 @@ captures/
 
 # Keystore files
 *.jks
+
+# untracked files
+.idea/.name
+.idea/vcs.xml
+projectFilesBackup/
+
 >>>>>>> ff03259f9a179e4a5d9c173638ee6ab58dcaf3e3
