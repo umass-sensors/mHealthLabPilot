@@ -17,27 +17,19 @@ public class MHLAgentService extends Service {
 
     public static final String TO_AGENT_MESSAGE = "to-agent";
     public static final String FROM_AGENT_MESSAGE = "from-agent";
-
-    LocalBroadcastManager localBroadcastManager;
+    public static final String MESSAGE_DATA = "data";
 
     @Override
     public void onCreate() {
-//        Log.d("agent", "starting up...");
-//        localBroadcastManager = LocalBroadcastManager.getInstance(this);
-//        localBroadcastManager.registerReceiver(new BroadcastReceiver() {
-//            @Override
-//            public void onReceive(Context context, Intent intent) {
-//                Log.d("agent", intent.getAction());
-//            }
-//        }, new IntentFilter(TO_AGENT_MESSAGE));
-//
-//        localBroadcastManager.sendBroadcast(new Intent(FROM_AGENT_MESSAGE));
     }
 
     public int onStartCommand(Intent intent, int flags, int startId) {
         Log.d("agent", "onstartCommand");
 
         new Thread(new Runnable() {
+
+            LocalBroadcastManager localBroadcastManager;
+
             @Override
             public void run() {
 
@@ -47,14 +39,13 @@ public class MHLAgentService extends Service {
                     @Override
                     public void onReceive(Context context, Intent intent) {
                         Log.d("agent", intent.getAction());
-//                        localBroadcastManager.sendBroadcast(new Intent(MHLAgentService.FROM_AGENT_MESSAGE));
+                        if (intent.hasExtra(MESSAGE_DATA)) {
+                            Log.d("message data", intent.getStringExtra(MESSAGE_DATA));
+                        }
                     }
                 }, new IntentFilter(MHLAgentService.TO_AGENT_MESSAGE));
 
-//                localBroadcastManager.sendBroadcast(new Intent(MHLAgentService.FROM_AGENT_MESSAGE));
-
                 for (int i = 0; i < 10; i++) {
-//                    Log.d("agent", "round " + i);
                     localBroadcastManager.sendBroadcast(new Intent(MHLAgentService.FROM_AGENT_MESSAGE));
                     try {
                         Thread.sleep(1000);

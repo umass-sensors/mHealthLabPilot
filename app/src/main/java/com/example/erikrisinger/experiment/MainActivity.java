@@ -25,28 +25,17 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onReceive(Context context, Intent intent) {
                 Log.d("main", intent.getAction());
-                broadcastManager.sendBroadcast(new Intent(MHLAgentService.TO_AGENT_MESSAGE));
+                Intent sendIntent = new Intent(MHLAgentService.TO_AGENT_MESSAGE);
+                sendIntent.putExtra(MHLAgentService.MESSAGE_DATA, "generic JSON string here");
+
+                broadcastManager.sendBroadcast(sendIntent);
+
             }
         }, new IntentFilter(MHLAgentService.FROM_AGENT_MESSAGE));
-
-        Log.d("main", "starting service");
-
-//        startService(new Intent(this, MHLAgentService.class));
-
-//        broadcastManager.sendBroadcast(new Intent(MHLAgentService.TO_AGENT_MESSAGE));
-//        broadcastManager.sendBroadcast(new Intent(MHLAgentService.TO_AGENT_MESSAGE));
-//        broadcastManager.sendBroadcast(new Intent(MHLAgentService.TO_AGENT_MESSAGE));
-//        broadcastManager.sendBroadcast(new Intent(MHLAgentService.TO_AGENT_MESSAGE));
-//        broadcastManager.sendBroadcast(new Intent(MHLAgentService.TO_AGENT_MESSAGE));
 
         Log.d("main", "stopping service");
 
         stopService(new Intent(this, MHLAgentService.class));
-
-//        broadcastManager.sendBroadcast(new Intent(MHLAgentService.TO_AGENT_MESSAGE));
-//        broadcastManager.sendBroadcast(new Intent(MHLAgentService.TO_AGENT_MESSAGE));
-//        broadcastManager.sendBroadcast(new Intent(MHLAgentService.TO_AGENT_MESSAGE));
-//        broadcastManager.sendBroadcast(new Intent(MHLAgentService.TO_AGENT_MESSAGE));
-//        broadcastManager.sendBroadcast(new Intent(MHLAgentService.TO_AGENT_MESSAGE));
+        Log.d("main", "after stopService");
     }
 }
