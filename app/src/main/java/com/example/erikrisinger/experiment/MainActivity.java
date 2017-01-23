@@ -25,10 +25,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onReceive(Context context, Intent intent) {
                 Log.d("main", intent.getAction());
-                Intent sendIntent = new Intent(MHLAgentService.TO_AGENT_MESSAGE);
-                sendIntent.putExtra(MHLAgentService.MESSAGE_DATA, "generic JSON string here");
-
-                broadcastManager.sendBroadcast(sendIntent);
+//                Intent sendIntent = new Intent(MHLAgentService.TO_AGENT_MESSAGE);
+//                sendIntent.putExtra(MHLAgentService.MESSAGE_DATA, "generic JSON string here");
+//
+//                broadcastManager.sendBroadcast(sendIntent);
 
             }
         }, new IntentFilter(MHLAgentService.FROM_AGENT_MESSAGE));

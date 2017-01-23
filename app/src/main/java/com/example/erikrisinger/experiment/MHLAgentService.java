@@ -9,6 +9,8 @@ import android.os.IBinder;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 
+import MHLAgent.Agent;
+
 /**
  * Created by erikrisinger on 1/17/17.
  */
@@ -45,14 +47,8 @@ public class MHLAgentService extends Service {
                     }
                 }, new IntentFilter(MHLAgentService.TO_AGENT_MESSAGE));
 
-                for (int i = 0; i < 10; i++) {
-                    localBroadcastManager.sendBroadcast(new Intent(MHLAgentService.FROM_AGENT_MESSAGE));
-                    try {
-                        Thread.sleep(1000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
+                new Thread(new Agent("007", "none.cs.umass.edu", 9797, localBroadcastManager)).start();
+
             }
         }).start();
 
