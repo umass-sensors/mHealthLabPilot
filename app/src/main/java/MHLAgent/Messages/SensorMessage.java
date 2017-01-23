@@ -8,7 +8,7 @@ import org.json.JSONObject;
 
 public abstract class SensorMessage extends Message {
 
-    public SensorMessage(String badgeID, String channel, long firstTimestamp) {
-        super(badgeID, channel, "sensor-message", firstTimestamp);
+    public SensorMessage(String badgeID, long firstTimestamp) {
+        super(badgeID, "data-message", "sensor-message", firstTimestamp);
     }
 }

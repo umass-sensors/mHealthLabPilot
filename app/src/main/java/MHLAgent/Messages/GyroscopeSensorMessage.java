@@ -8,12 +8,12 @@ import org.json.JSONObject;
  * Created by erisinger on 1/23/17.
  */
 
-public class AccelerometerSensorMessage extends SensorMessage {
+public class GyroscopeSensorMessage extends SensorMessage {
 
     long t;
     double x, y, z;
 
-    public AccelerometerSensorMessage(String badgeID, long t, double x, double y, double z) {
+    public GyroscopeSensorMessage(String badgeID, long t, double x, double y, double z) {
         super(badgeID, t);
         this.t = t;
         this.x = x;
@@ -21,7 +21,7 @@ public class AccelerometerSensorMessage extends SensorMessage {
         this.z = z;
 
         try {
-            metadata.put("sensor-type", "accelerometer");
+            metadata.put("sensor-type", "gyroscope");
 
             JSONArray vals = new JSONArray();
             JSONObject xVal = new JSONObject();
@@ -44,5 +44,4 @@ public class AccelerometerSensorMessage extends SensorMessage {
             e.printStackTrace();
         }
     }
-
 }

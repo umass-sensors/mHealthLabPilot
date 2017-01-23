@@ -20,8 +20,8 @@ public abstract class Message {
 
     public Message(String badgeID, String channel, String messageType, long firstTimestamp) {
         this.badgeID = badgeID;
-        this.channel = channel;
         this.messageType = messageType;
+        this.channel = channel;
         this.messageVersion = "1.0";
 
         JSONObject stamp  = new JSONObject();
