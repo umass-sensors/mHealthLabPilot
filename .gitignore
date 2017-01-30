@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 *.iml
 .gradle
 /local.properties
@@ -9,6 +10,8 @@
 /captures
 .externalNativeBuild
 =======
+=======
+>>>>>>> 477a33ee8571a33aa26b4644c2cc2ba4527dd8c9
 # Built application files
 *.apk
 *.ap_
@@ -49,6 +52,7 @@ captures/
 
 # Keystore files
 *.jks
+<<<<<<< HEAD
 
 # untracked files
 .idea/.name
@@ -56,3 +60,5 @@ captures/
 projectFilesBackup/
 
 >>>>>>> ff03259f9a179e4a5d9c173638ee6ab58dcaf3e3
+=======
+>>>>>>> 477a33ee8571a33aa26b4644c2cc2ba4527dd8c9
