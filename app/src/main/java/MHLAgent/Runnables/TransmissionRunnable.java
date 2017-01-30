@@ -15,11 +15,11 @@ import MHLAgent.Messages.Message;
  */
 
 public class TransmissionRunnable implements Runnable {
-    BlockingQueue<Message> queue;
-    BufferedWriter out;
-    Agent parent;
+    private BlockingQueue<String> queue;
+    private BufferedWriter out;
+    private Agent parent;
 
-    public TransmissionRunnable(BlockingQueue<Message> queue, BufferedWriter out, Agent parent) {
+    public TransmissionRunnable(BlockingQueue<String> queue, BufferedWriter out, Agent parent) {
         this.queue = queue;
         this.out = out;
         this.parent = parent;
@@ -28,31 +28,46 @@ public class TransmissionRunnable implements Runnable {
     @Override
     public void run() {
 
+//        System.out.println("TransmissionRunnable.run()");
+
         try {
-            Message message;
+            String message;
 
             //enter transmission loop
             while (!Thread.currentThread().isInterrupted()) {
+
+//                System.out.println("TransmissionRunnable.run(): queue size: " + queue.size());
+
                 try {
                     message = queue.take();
-                    out.write(message.toJSONString());
+                    out.write(message + "\n");
+                    out.flush();
+
+//                    System.out.println("TransmissionRunnable.run(): transmitted message");
+
                 } catch (InterruptedException e) {
-                    e.printStackTrace();
+//                    e.printStackTrace();
                 }
             }
 
+            System.out.println("TransmissionRunnable.run(): interrupted");
+
         } catch (IOException e) {
-            System.out.print("connection lost...");
+            System.out.print("connection lost (transmission)...");
             parent.onLostConnection();
         } finally {
 
+            System.out.print("cleaning up transmission thread...");
             //clean up
             try {
                 out.close();
             } catch (IOException e) {
                 e.printStackTrace();
             }
+            System.out.print("complete...");
         }
+
+        System.out.println("TransmissionRunnable.run(): exiting");
 
     }
 }

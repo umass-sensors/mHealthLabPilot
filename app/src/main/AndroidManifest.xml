@@ -3,6 +3,8 @@
     package="com.example.erikrisinger.experiment">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="com.microsoft.band.service.access.BIND_BAND_SERVICE" />
 
     <application
         android:allowBackup="true"
@@ -10,14 +12,27 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/main_title"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <service android:name=".MHLAgentService" />
+        <service android:name=".BandProxyService" />
+
+        <activity android:name=".SurveysActivity"
+            android:label="@string/surveys_title"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".SettingsActivity"
+            android:label="@string/settings_title"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>
